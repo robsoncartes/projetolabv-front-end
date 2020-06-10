@@ -2,15 +2,25 @@
   <b-container class="login-screen">
     <transition appear>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="login-container">
-        <h1 class="mb-4 text-muted">Fatequiz</h1>
+        <h1 class="mb-4 text-muted">Registrar-se</h1>
         <hr />
-        <b-form-group label="Usuário" label-for="inputUsuario" description>
+        <b-form-group label="Nome de Usuário" label-for="inputUsuario" description>
           <b-form-input
             id="inputUsuario"
+            v-model="form.username"
+            type="text"
+            required
+            placeholder="Digite o nome de usuário"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group label="E-mail" label-for="inputEmail" description>
+          <b-form-input
+            id="inputEmail"
             v-model="form.email"
             type="text"
             required
-            placeholder="Entre com seu usuario"
+            placeholder="Entre com um e-mail válido"
           ></b-form-input>
         </b-form-group>
 
@@ -24,11 +34,10 @@
           ></b-form-input>
         </b-form-group>
         <div class="mb-3">
-          <router-link to="/register">Ainda não é registrado? Registre-se</router-link>
+          <router-link to="/login">Já sou registrado. Entrar</router-link>
         </div>
-
         <div>
-          <b-button type="submit" variant="success" class="mr-2">Login</b-button>
+          <b-button type="submit" variant="success" class="mr-2">Registrar</b-button>
           <b-button type="reset" variant="danger">Limpar Campos</b-button>
         </div>
       </b-form>
@@ -37,13 +46,14 @@
 </template>
 
 <script>
-import Login from "../../../services/login";
+import Registrar from "../../../services/registrar";
 
 export default {
   data() {
     return {
       form: {
         email: "",
+        username: "",
         password: ""
       },
 
@@ -53,15 +63,16 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      Login.logar(this.form).then(resposta => {
+      Registrar.registrar(this.form).then(resposta => {
         console.log(resposta);
-        alert("Login efetuado com sucesso!");
+        alert("Usuário registrado com sucesso!");
       });
     },
 
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
+      this.form.username = "";
       this.form.email = "";
       this.form.password = "";
 
@@ -74,4 +85,4 @@ export default {
 };
 </script>
 
-<style src="./LoginScreen.scss" lang="scss">
+<style src="./RegisterScreen.scss" lang="scss">
