@@ -42,6 +42,34 @@
         </div>
       </b-form>
     </transition>
+
+    <b-modal id="modal-usuario-cadastrado" size="sm">
+      <template v-slot:modal-header="{}">
+        <h5 class="text-success">Cadastrado com Sucesso!</h5>
+      </template>
+      <template>
+        <p
+          class="text-muted"
+        >Obrigado por se cadastrar, você será redirecioanado para a tela de login.</p>
+      </template>
+
+      <template v-slot:modal-footer>
+        <b-button size="sm" variant="success" @click="redirectLogin()">OK</b-button>
+      </template>
+    </b-modal>
+
+    <b-modal id="modal-erro-cadastro" size="sm">
+      <template v-slot:modal-header="{}">
+        <h5 class="text-danger">Falha ao registrar</h5>
+      </template>
+      <template>
+        <p class="text-muted">E-mail já está cadastrado! Tente novamente.</p>
+      </template>
+
+      <template v-slot:modal-footer="{ ok }">
+        <b-button size="sm" variant="danger" @click="ok()">OK</b-button>
+      </template>
+    </b-modal>
   </b-container>
 </template>
 
@@ -64,11 +92,13 @@ export default {
     onSubmit(evt) {
       let app = this;
       evt.preventDefault();
-      Registrar.registrar(this.form).then(resposta => {
-        alert("Usuário registrado com sucesso!");
-        console.log(resposta);
-        app.$router.push("login");
-      });
+      Registrar.registrar(this.form)
+        .then(() => {
+          app.$bvModal.show("modal-usuario-cadastrado");
+        })
+        .catch(() => {
+          app.$bvModal.show("modal-erro-cadastro");
+        });
     },
 
     onReset(evt) {
@@ -82,6 +112,10 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
+    },
+
+    redirectLogin() {
+      this.$router.push("login");
     }
   }
 };
