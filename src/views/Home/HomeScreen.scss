@@ -1,0 +1,22 @@
+@import '../../assets/scss/helpers/placeholders';
+
+.exams-container {
+  min-height: 100vh;
+  background-color: #fefefe;
+}
+
+.test-block {
+  @extend %background-shadow;
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all .5s;
+
+  &:hover {
+    box-shadow: 5px 5px 5px rgba($color: #111, $alpha: .2);
+    transform: scale(1.01);
+    cursor: pointer;
+  }
+}
