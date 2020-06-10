@@ -62,10 +62,12 @@ export default {
   },
   methods: {
     onSubmit(evt) {
+      let app = this;
       evt.preventDefault();
       Registrar.registrar(this.form).then(resposta => {
-        console.log(resposta);
         alert("Usuário registrado com sucesso!");
+        console.log(resposta);
+        app.$router.push("login");
       });
     },
 
