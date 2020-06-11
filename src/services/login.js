@@ -3,7 +3,7 @@ import {
 } from './config'
 
 export default {
-  logar: (login) => {
-    return http.post('login', login)
+  login: (dados) => {
+    return http.post('login', dados)
   }
 }

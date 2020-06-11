@@ -47,12 +47,9 @@ export default {
     };
   },
 
-  methods: {},
-
-  mounted() {
+  created() {
     Exams.listar().then(resposta => {
       this.exams = resposta.data;
-      console.log(this.exams);
     });
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <b-container class="login-screen">
     <transition appear>
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="login-container">
+      <b-form @submit.prevent="auth" @reset="onReset" v-if="show" class="login-container">
         <h1 class="mb-4 text-muted">Fatequiz</h1>
         <hr />
         <b-form-group label="Usuário" label-for="inputUsuario" description>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Login from "../../../services/login";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -50,18 +50,15 @@ export default {
       show: true
     };
   },
+
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      Login.logar(this.form).then(resposta => {
-        console.log(resposta);
-        alert("Login efetuado com sucesso!");
-      });
+    ...mapActions(["login"]),
+    auth() {
+      this.login({ usuario: this.form.email, senha: this.form.password });
     },
 
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
       this.form.email = "";
       this.form.password = "";
 

@@ -19,7 +19,7 @@
               <em>Usuário</em>
             </template>
             <b-dropdown-item href="#">Perfil</b-dropdown-item>
-            <b-dropdown-item href="#">Sair</b-dropdown-item>
+            <b-dropdown-item>Sair</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -29,7 +29,8 @@
 
 <script>
 export default {
-  name: "NavMenu"
+  name: "NavMenu",
+  methods: {}
 };
 </script>
 

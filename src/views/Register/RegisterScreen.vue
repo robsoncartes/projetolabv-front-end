@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import Registrar from "../../../services/registrar";
+import Registrar from "@/services/registrar";
 
 export default {
   data() {
