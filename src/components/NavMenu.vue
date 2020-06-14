@@ -6,10 +6,10 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <!-- <b-navbar-nav>
-          <router-link to="/">Home</router-link>
-          <router-link to="/login">login</router-link>
-        </b-navbar-nav>-->
+        <b-navbar-nav>
+          <router-link to="/">Exams</router-link>
+          <router-link to="/contas">Contas</router-link>
+        </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">

@@ -2,17 +2,17 @@
   <b-container>
     <transition appear>
       <b-row class="mt-4 principal-container">
-        <b-col md="4" class="p-2" v-for="conta in contas" :key="conta.id">
+        <b-col md="4" class="p-2" v-for="atividade in atividades" :key="atividade.id">
           <div class="test-block p-4">
             <div>
-              <h3>{{conta.username}}</h3>
+              <h3>{{atividade.examTitle}}</h3>
               <p>
-                <strong>E-mail:</strong>
-                {{conta.email}}
+                <strong>Username:</strong>
+                {{atividade.username}}
               </p>
               <p>
                 <strong>ID:</strong>
-                {{conta.id}}
+                {{atividade.id}}
               </p>
               <hr />
             </div>
@@ -25,13 +25,13 @@
 
 <script>
 import { mapState } from "vuex";
-import Contas from "../../services/contas";
+import Atividades from "../../services/activities";
 
 export default {
   name: "contas",
   data() {
     return {
-      contas: ""
+      atividades: ""
     };
   },
 
@@ -41,9 +41,9 @@ export default {
 
   methods: {
     listar() {
-      Contas.listar()
+      Atividades.listar()
         .then(res => {
-          this.contas = res.data;
+          this.atividades = res.data;
         })
         .catch(error => console.log(error));
     }

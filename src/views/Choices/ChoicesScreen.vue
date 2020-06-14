@@ -2,18 +2,11 @@
   <b-container>
     <transition appear>
       <b-row class="mt-4 principal-container">
-        <b-col md="4" class="p-2" v-for="conta in contas" :key="conta.id">
+        <b-col md="12" class="p-2" v-for="escolha in escolhas" :key="escolha.id">
           <div class="test-block p-4">
             <div>
-              <h3>{{conta.username}}</h3>
-              <p>
-                <strong>E-mail:</strong>
-                {{conta.email}}
-              </p>
-              <p>
-                <strong>ID:</strong>
-                {{conta.id}}
-              </p>
+              <h3>Resposta: {{ escolha.answer}}</h3>
+              <h3>Questão: {{ escolha.questionTitle}}</h3>
               <hr />
             </div>
           </div>
@@ -25,13 +18,13 @@
 
 <script>
 import { mapState } from "vuex";
-import Contas from "../../services/contas";
+import Choices from "../../services/choices";
 
 export default {
-  name: "contas",
+  name: "Choices",
   data() {
     return {
-      contas: ""
+      escolhas: ""
     };
   },
 
@@ -41,9 +34,9 @@ export default {
 
   methods: {
     listar() {
-      Contas.listar()
+      Choices.listar()
         .then(res => {
-          this.contas = res.data;
+          this.escolhas = res.data;
         })
         .catch(error => console.log(error));
     }

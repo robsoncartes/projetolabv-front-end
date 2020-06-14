@@ -121,4 +121,4 @@ export default {
 };
 </script>
 
-<style src="./RegisterScreen.scss" lang="scss">
+<style lang="stylus" scoped></style>

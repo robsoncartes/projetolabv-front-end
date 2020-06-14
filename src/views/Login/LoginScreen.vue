@@ -71,4 +71,5 @@ export default {
 };
 </script>
 
-<style src="./LoginScreen.scss" lang="scss">
+<style scoped>
+</style>

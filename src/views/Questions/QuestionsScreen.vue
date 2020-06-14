@@ -2,19 +2,17 @@
   <b-container>
     <transition appear>
       <b-row class="mt-4 principal-container">
-        <b-col md="4" class="p-2" v-for="conta in contas" :key="conta.id">
+        <b-col md="12" class="p-2" v-for="questao in questoes" :key="questao.id">
           <div class="test-block p-4">
             <div>
-              <h3>{{conta.username}}</h3>
-              <p>
-                <strong>E-mail:</strong>
-                {{conta.email}}
-              </p>
-              <p>
-                <strong>ID:</strong>
-                {{conta.id}}
-              </p>
+              <h3>{{ questao.question}}</h3>
               <hr />
+              <ul>
+                <li v-for="resposta in questao.answers" :key="resposta.id">
+                  <input type="radio" :name="questao.id" :id="resposta.id" />
+                  <label :for="resposta.id">{{ resposta.answer }}</label>
+                </li>
+              </ul>
             </div>
           </div>
         </b-col>
@@ -25,13 +23,13 @@
 
 <script>
 import { mapState } from "vuex";
-import Contas from "../../services/contas";
+import Questions from "../../services/questions";
 
 export default {
-  name: "contas",
+  name: "questions",
   data() {
     return {
-      contas: ""
+      questoes: ""
     };
   },
 
@@ -41,9 +39,9 @@ export default {
 
   methods: {
     listar() {
-      Contas.listar()
+      Questions.listar()
         .then(res => {
-          this.contas = res.data;
+          this.questoes = res.data;
         })
         .catch(error => console.log(error));
     }
