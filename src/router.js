@@ -7,6 +7,8 @@ import Atividades from "./views/Activities/ActivitiesScreen.vue"
 import Exams from "./views/Exams/ExamsScreen.vue"
 import Questions from "./views/Questions/QuestionsScreen.vue"
 import Choices from "./views/Choices/ChoicesScreen.vue"
+import Home from "./views/Home/HomeScreen.vue"
+
 
 Vue.use(Router)
 
@@ -23,9 +25,13 @@ export default new Router({
       component: Register
     },
 
-
     {
       path: "/",
+      component: Home
+    },
+
+    {
+      path: "/exams",
       component: Exams
     },
 

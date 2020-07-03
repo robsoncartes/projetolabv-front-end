@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: null,
-    usuario: null
+    usuario: null,
   },
   mutations: {
     setUsuario(state, usuario) {
@@ -34,9 +34,11 @@ export default new Vuex.Store({
         .then(res => {
           context.commit('setUsuario', usuario);
           context.commit('setToken', res.headers.authorization);
-          router.push('/');
+          router.push('/exams');
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          console.log(error)
+        });
     }
   },
   modules: {}
