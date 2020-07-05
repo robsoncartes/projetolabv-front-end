@@ -1,13 +1,12 @@
 import Vue from "vue"
 import Router from "vue-router"
-import Login from "./views/Login/LoginScreen.vue"
-import Register from "./views/Register/RegisterScreen.vue"
-import Contas from "./views/Contas/ContasScreen.vue"
-import Atividades from "./views/Activities/ActivitiesScreen.vue"
-import Exams from "./views/Exams/ExamsScreen.vue"
-import Questions from "./views/Questions/QuestionsScreen.vue"
-import Choices from "./views/Choices/ChoicesScreen.vue"
-import Home from "./views/Home/HomeScreen.vue"
+import Login from "./views/Login.vue"
+import Register from "./views/Register.vue"
+import Exames from "./views/Exames/Exames.vue"
+import Exame from "./views/Exames/Exame.vue"
+import CardExame from "./views/Exames/CardExame.vue"
+import CardQuestion from "./views/Exames/CardQuestion.vue"
+import Home from "./views/Home.vue"
 
 
 Vue.use(Router)
@@ -31,29 +30,26 @@ export default new Router({
     },
 
     {
-      path: "/exams",
-      component: Exams
+      path: "/exames",
+      component: Exames,
     },
 
     {
-      path: "/contas",
-      component: Contas
+      path: "/exame",
+      component: Exame,
+      props: true,
+      children: [{
+        name: "id",
+        path: ":id",
+        component: CardExame,
+        props: true,
+        children: [{
+          name: "id",
+          path: ":id",
+          component: CardQuestion,
+          props: true,
+        }]
+      }]
     },
-
-    {
-      path: "/atividades",
-      component: Atividades
-    },
-
-    {
-      path: "/questoes",
-      component: Questions
-    },
-
-    {
-      path: "/escolhas",
-      component: Choices
-    },
-
   ]
 })

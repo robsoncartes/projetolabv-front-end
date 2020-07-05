@@ -34,7 +34,7 @@ export default new Vuex.Store({
         .then(res => {
           context.commit('setUsuario', usuario);
           context.commit('setToken', res.headers.authorization);
-          router.push('/exams');
+          router.push('/exames');
         })
         .catch(error => {
           console.log(error)

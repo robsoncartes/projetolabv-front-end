@@ -1,32 +1,22 @@
 <template>
-  <div>
-    <div>
-      <b-button v-b-toggle.sidebar-right class="btn-toggle">
-        <b-icon-arrow-left></b-icon-arrow-left>
-      </b-button>
-      <b-sidebar id="sidebar-right" title="Fatec Quiz" right shadow>
-        <div class="px-3 py-2">
-          <p
-            class="text-muted animated fadeInUp"
-          >Projeto de LAB V - Desenvolvimento Java, Spring Boot, Sprint Security, JWT e vuejs.</p>
-          <p class="text-muted animated fadeInUp">
-            Disciplina: Laboratório de Desenvolvimento de Banco de Dados V
-            <br />Professor: Emanuel Mineda Carneiro
-          </p>
-          <p class="text-muted animated fadeInUp">
-            Membros do Grupo:
-            <br />
-            <a href="https://github.com/robsoncartes">Robson Sousa</a>,
-            <a href="https://github.com/rodolfo-santos">Rodolfo Santos</a>
-          </p>
-          <p class="text-muted animated fadeInUp">FATEC SJC - Professor Jessen Vidal</p>
-        </div>
-
-        <p class="px-3 py-2 animated fadeInUp">
-          <b-button size="lg" variant="danger" @click="sair">Sair</b-button>
+  <div class="animated">
+    <b-button v-b-toggle.sidebar-right class="btn-toggle">
+      <b-icon-arrow-left></b-icon-arrow-left>
+    </b-button>
+    <b-sidebar id="sidebar-right" title="Fatec Quiz" right shadow>
+      <div class="px-3 py-2">
+        <p>
+          <span class="text-muted">Você está logado como</span>
+          <br />
+          <strong>{{ usuario }}</strong>
         </p>
-      </b-sidebar>
-    </div>
+        <hr />
+        <p class="animated fadeInUp">
+          <b-button size="md w-100 mb-2" variant="primary" to="/exames">Exames</b-button>
+          <b-button size="md w-100 mb-2" variant="danger" @click="sair">Sair</b-button>
+        </p>
+      </div>
+    </b-sidebar>
   </div>
 </template>
 
@@ -35,6 +25,12 @@ import store from "@/store";
 import router from "@/router";
 
 export default {
+  data() {
+    return {
+      usuario: store.state.usuario
+    };
+  },
+
   methods: {
     sair() {
       store.commit("logout");
