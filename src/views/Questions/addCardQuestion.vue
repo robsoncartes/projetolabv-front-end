@@ -1,19 +1,32 @@
 <template>
-  <div class="text-white">
-    <h2>Adicionando nova Questão</h2>
-    <p>{{ examTitle }}</p>
+  <div class="tela">
+    <h2>Adicionar Questão ao Exame {{ examTitle }}</h2>
+    <hr />
     <b-form>
       <b-form-group label="Título da Pergunta:">
-        <b-form-input v-model="form.questionTitle" required placeholder="Título da pergunta"></b-form-input>
+        <b-form-input v-model="form.questionTitle" required placeholder="Digite uma questão"></b-form-input>
       </b-form-group>
-
-      <b-form-group label="Reposta Certa:">
-        <b-form-input v-model="form.assertion" required placeholder="Reposta Certa"></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="Exame:">
-        <b-form-input v-model="form.exam.examTitle" required placeholder="Exame Título" disabled></b-form-input>
-      </b-form-group>
+      <hr />
+      <div>
+        <strong>Alternativas</strong>
+        <div class="text-muted pb-2">Marque a alternativa verdadeira</div>
+        <div
+          v-for="(alt, index) in alternativas"
+          :key="index"
+          class="d-flex align-items-center pb-2"
+        >
+          <input type="radio" name="alternativa" v-model="alt.title" class="mr-3" />
+          <b-form-input
+            v-model="form.questionTitle"
+            required
+            :placeholder="`Alternativa ${index + 1}`"
+          ></b-form-input>
+        </div>
+        <div class="btn-adicionar-questao" @click="adicionarAlternativa">
+          Adicionar Alternativa
+          <b-icon-plus-circle />
+        </div>
+      </div>
 
       <b-button @click="adicionarQuestao">Adicionar Questão</b-button>
     </b-form>
@@ -34,7 +47,18 @@ export default {
         exam: {
           examTitle: this.examTitle
         }
-      }
+      },
+
+      alternativas: [
+        {
+          title: "True",
+          correta: true
+        },
+        {
+          title: "False",
+          correta: false
+        }
+      ]
     };
   },
 
@@ -47,10 +71,28 @@ export default {
         .catch(() => {
           alert("ERRO!");
         });
+    },
+
+    adicionarAlternativa() {
+      this.alternativas.push({
+        title: "",
+        correta: false
+      });
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
+.btn-adicionar-questao {
+  color: green;
+  cursor: pointer;
+  opacity: 0.5;
+  padding-bottom: 25px;
+  transition: opacity 0.25s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
 </style>

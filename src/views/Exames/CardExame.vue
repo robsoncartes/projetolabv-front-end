@@ -1,38 +1,43 @@
 <template>
-  <div class="tela animated fadeInLeft">
-    <div class="row justify-content-between m-auto">
-      <h2>{{ exame.examTitle }}</h2>
-      <router-link to="/exames">
-        <b-icon-arrow-left></b-icon-arrow-left>Voltar para Exames
-      </router-link>
-    </div>
-    <p class="text-muted">{{ exame.description }}</p>
-    <div>
-      <b-card no-body>
-        <b-tabs card>
-          <b-tab
-            :title="`Questão ${index + 1}`"
-            v-for="(question, index) in exame.questions"
-            :key="index"
-          >
-            <b-card-text>
-              <h5>{{question.questionTitle}}</h5>
+  <div class="tela-main">
+    <div class="tela animated fadeInLeft" v-if="exame">
+      <div class="row justify-content-between m-auto">
+        <h2>{{ exame.examTitle }}</h2>
+        <router-link to="/exames">
+          <b-icon-arrow-left></b-icon-arrow-left>Voltar para Exames
+        </router-link>
+      </div>
+      <p class="text-muted">{{ exame.description }}</p>
+      <div>
+        <b-card no-body>
+          <b-tabs card>
+            <b-tab
+              :title="`Questão ${index + 1}`"
+              v-for="(question, index) in exame.questions"
+              :key="index"
+            >
+              <b-card-text>
+                <h5>{{question.questionTitle}}</h5>
 
-              <p v-for="(resposta, index2) in question.answers" :key="index2">
-                <input
-                  type="radio"
-                  :name="`questao${question.id}`"
-                  :value="resposta.answer"
-                  v-model="respostasTeste[index]"
-                />
-                {{resposta.answer}}
-              </p>
-            </b-card-text>
-          </b-tab>
-        </b-tabs>
-      </b-card>
+                <p v-for="(resposta, index2) in question.answers" :key="index2">
+                  <input
+                    type="radio"
+                    :name="`questao${question.id}`"
+                    :value="resposta.answer"
+                    v-model="respostasTeste[index]"
+                  />
+                  {{resposta.answer}}
+                </p>
+              </b-card-text>
+            </b-tab>
+          </b-tabs>
+        </b-card>
+      </div>
+      <b-button variant="success" @click="gerarResultado">Finalizar e Enviar Respostas</b-button>
     </div>
-    <b-button variant="success" @click="gerarResultado">Finalizar e Enviar Respostas</b-button>
+    <div v-else class="animated fadeIn">
+      <b-icon icon="circle-fill" animation="throb" font-scale="4"></b-icon>
+    </div>
   </div>
 </template>
 
@@ -95,5 +100,12 @@ export default {
   width: 100%;
   padding: 20px;
   border-radius: 10px;
+}
+
+.tela-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

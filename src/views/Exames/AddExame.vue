@@ -1,26 +1,25 @@
 <template>
   <b-container>
     <NavMenu />
-    <div class="text-white">
-      <h2>Adicionando novo Exame</h2>
-      <b-form>
-        <b-form-group label="Título:">
-          <b-form-input v-model="form.examTitle" required placeholder="Título do Exame"></b-form-input>
-        </b-form-group>
+    <div class="tela-main">
+      <div class="tela">
+        <h2>Novo Exame</h2>
+        <hr />
+        <b-form>
+          <b-form-group label="Título:">
+            <b-form-input v-model="form.examTitle" required placeholder="Título do Exame"></b-form-input>
+          </b-form-group>
 
-        <b-form-group label="Tipo:">
-          <b-form-input v-model="form.type" required placeholder="Tipo do Exame"></b-form-input>
-        </b-form-group>
+          <b-form-group label="Tipo:">
+            <b-form-input v-model="form.type" required placeholder="Tipo do Exame"></b-form-input>
+          </b-form-group>
 
-        <b-form-group label="Descrição:">
-          <b-form-textarea v-model="form.description" required placeholder="Descrição"></b-form-textarea>
-        </b-form-group>
-
-        <b-form-group label="Autor:">
-          <b-form-input v-model="form.author" required placeholder="Autor" disabled></b-form-input>
-        </b-form-group>
-      </b-form>
-      <b-button @click="adicionarExame()">Adicionar Questões</b-button>
+          <b-form-group label="Descrição:">
+            <b-form-textarea v-model="form.description" required placeholder="Descrição"></b-form-textarea>
+          </b-form-group>
+        </b-form>
+        <b-button @click="adicionarExame()" variant="primary">Adicionar Questões</b-button>
+      </div>
     </div>
   </b-container>
 </template>
@@ -61,5 +60,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.tela-main {
+  display: flex;
+  height: 100vh;
+}
 </style>
