@@ -24,6 +24,10 @@
           </p>
           <b-button @click="abrirExame(exam.id)">Responder</b-button>
         </div>
+        <div class="text-right add-new-exam animated fadeInUp delay-1s">
+          Adicionar novo
+          <b-icon-plus-circle></b-icon-plus-circle>
+        </div>
       </b-col>
     </b-row>
   </b-container>
@@ -81,5 +85,15 @@ export default {
 
   border-left: #009688 solid 5px;
   background-color: #222;
+}
+
+.add-new-exam {
+  opacity: 0.7;
+  transition: 0.2s;
+
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 </style>

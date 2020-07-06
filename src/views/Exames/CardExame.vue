@@ -47,7 +47,7 @@ export default {
       exams: "",
       exame: "",
       respostasTeste: [],
-      respostasCertas: ["True", "Apple"],
+      respostasCertas: [],
       acertos: 0,
       media: 0
     };
@@ -63,7 +63,9 @@ export default {
 
       const result = app.exams.find(item => item.id == app.id);
       this.exame = result;
-      console.log(this.exame);
+      this.exame.questions.forEach(questao => {
+        this.respostasCertas.push(questao.assertion);
+      });
     },
 
     gerarResultado() {
@@ -83,11 +85,7 @@ export default {
     this.buscaTeste();
   },
 
-  watch: {
-    respostasTeste() {
-      console.log(this.respostasTeste);
-    }
-  }
+  watch: {}
 };
 </script>
 
