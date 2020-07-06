@@ -57,12 +57,12 @@ export default {
     async buscaTeste() {
       const app = this;
 
-      await Exams.listar().then(resposta => {
-        this.exams = resposta.data;
+      await Exams.unico(app.id).then(resposta => {
+        this.exame = resposta.data;
       });
 
-      const result = app.exams.find(item => item.id == app.id);
-      this.exame = result;
+      // const result = app.exams.find(item => item.id == app.id);
+      // this.exame = result;
       this.exame.questions.forEach(questao => {
         this.respostasCertas.push(questao.assertion);
       });

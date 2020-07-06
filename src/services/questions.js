@@ -5,5 +5,9 @@ import {
 export default {
   listar: () => {
     return http.get('questions')
+  },
+
+  adicionar: (questao) => {
+    return http.post('questions', questao)
   }
 }

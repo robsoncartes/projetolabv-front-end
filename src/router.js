@@ -5,8 +5,13 @@ import Register from "./views/Register.vue"
 import Exames from "./views/Exames/Exames.vue"
 import Exame from "./views/Exames/Exame.vue"
 import CardExame from "./views/Exames/CardExame.vue"
+import AddExame from "./views/Exames/AddExame.vue"
 import CardQuestion from "./views/Exames/CardQuestion.vue"
 import Home from "./views/Home.vue"
+
+import addQuestion from "./views/Questions/addQuestion.vue"
+import addCardQuestion from "./views/Questions/addCardQuestion.vue"
+
 
 
 Vue.use(Router)
@@ -49,6 +54,23 @@ export default new Router({
           component: CardQuestion,
           props: true,
         }]
+      }]
+    },
+
+    {
+      path: "/adicionar_exame",
+      component: AddExame
+    },
+
+    {
+      path: "/add_question",
+      component: addQuestion,
+      props: true,
+      children: [{
+        name: "examTitle",
+        path: ":examTitle",
+        component: addCardQuestion,
+        props: true,
       }]
     },
   ]

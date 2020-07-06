@@ -24,7 +24,7 @@
           </p>
           <b-button @click="abrirExame(exam.id)">Responder</b-button>
         </div>
-        <div class="text-right add-new-exam animated fadeInUp delay-1s">
+        <div class="text-right add-new-exam animated fadeInUp delay-1s" @click="adicionarExame">
           Adicionar novo
           <b-icon-plus-circle></b-icon-plus-circle>
         </div>
@@ -54,6 +54,10 @@ export default {
     abrirExame(id) {
       const caminho = `/exame/${id}`;
       this.$router.push(caminho);
+    },
+
+    adicionarExame() {
+      this.$router.push("/adicionar_exame");
     }
   },
 
