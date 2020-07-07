@@ -2,7 +2,7 @@
   <b-container>
     <NavMenu />
     <div class="tela-main">
-      <div class="tela">
+      <div class="tela animated fadeInLeft">
         <h2>Novo Exame</h2>
         <hr />
         <b-form>

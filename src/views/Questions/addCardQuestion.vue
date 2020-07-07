@@ -1,5 +1,5 @@
 <template>
-  <div class="tela">
+  <div class="tela animated fadeInLeft">
     <h2>Adicionar Questão ao Exame {{ examTitle }}</h2>
     <hr />
     <b-form>
@@ -13,14 +13,21 @@
         <div
           v-for="(alt, index) in alternativas"
           :key="index"
-          class="d-flex align-items-center pb-2"
+          class="d-flex align-items-center pb-2 animated fadeInUp"
         >
-          <input type="radio" name="alternativa" v-model="alt.title" class="mr-3" />
-          <b-form-input
-            v-model="form.questionTitle"
-            required
-            :placeholder="`Alternativa ${index + 1}`"
-          ></b-form-input>
+          <input
+            type="radio"
+            name="alternativa"
+            v-model="form.assertion"
+            :value="alt.title"
+            class="mr-3"
+          />
+          <b-form-input v-model="alt.title" required :placeholder="`Alternativa ${index + 1}`"></b-form-input>
+          <b-icon-trash
+            class="ml-2 text-danger"
+            style="cursor: pointer"
+            @click="removerAlternativa(index)"
+          />
         </div>
         <div class="btn-adicionar-questao" @click="adicionarAlternativa">
           Adicionar Alternativa
@@ -51,12 +58,7 @@ export default {
 
       alternativas: [
         {
-          title: "True",
-          correta: true
-        },
-        {
-          title: "False",
-          correta: false
+          title: ""
         }
       ]
     };
@@ -75,9 +77,13 @@ export default {
 
     adicionarAlternativa() {
       this.alternativas.push({
-        title: "",
-        correta: false
+        title: ""
       });
+    },
+
+    removerAlternativa(index) {
+      console.log("chamou");
+      this.alternativas.splice(index, 1);
     }
   }
 };
