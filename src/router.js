@@ -12,6 +12,9 @@ import Home from "./views/Home.vue"
 import addQuestion from "./views/Questions/addQuestion.vue"
 import addCardQuestion from "./views/Questions/addCardQuestion.vue"
 
+import Usuarios from "./views/Usuarios/Usuarios.vue"
+import UsuariosPage from "./views/Usuarios/UsuariosPage.vue"
+
 
 
 Vue.use(Router)
@@ -73,5 +76,18 @@ export default new Router({
         props: true,
       }]
     },
+
+    {
+      path: "/usuarios",
+      component: Usuarios,
+      props: true,
+      children: [{
+        name: "pagina",
+        path: ":pagina",
+        component: UsuariosPage,
+        props: true
+      }]
+    },
+
   ]
 })

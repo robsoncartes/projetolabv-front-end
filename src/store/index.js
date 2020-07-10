@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     usuario: null,
+    itensPorPagina: 2,
   },
   mutations: {
     setUsuario(state, usuario) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setToken(state, token) {
       state.token = token;
+    },
+    setItensPorPagina(state, numero) {
+      state.itensPorPagina = numero;
     },
     logout(state) {
       state.token = null;

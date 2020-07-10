@@ -13,6 +13,7 @@
         <hr />
         <p class="animated fadeInUp">
           <b-button size="md w-100 mb-2" variant="primary" to="/exames">Exames</b-button>
+          <b-button size="md w-100 mb-2" variant="primary" to="/usuarios/1">Usuários</b-button>
           <b-button size="md w-100 mb-2" variant="danger" @click="sair">Sair</b-button>
         </p>
       </div>
