@@ -82,7 +82,6 @@ export default {
     },
 
     removerAlternativa(index) {
-      console.log("chamou");
       this.alternativas.splice(index, 1);
     }
   }

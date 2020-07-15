@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     token: null,
     usuario: null,
-    itensPorPagina: 2,
+    nivel: null,
+    itensPorPagina: 5,
   },
   mutations: {
     setUsuario(state, usuario) {
@@ -17,6 +18,13 @@ export default new Vuex.Store({
     },
     setToken(state, token) {
       state.token = token;
+    },
+    setNivel(state, nivel) {
+      if (nivel.includes('ADMINISTRATOR')) {
+        state.nivel = 'ADMIN'
+      } else {
+        state.nivel = 'USER'
+      }
     },
     setItensPorPagina(state, numero) {
       state.itensPorPagina = numero;
@@ -38,11 +46,10 @@ export default new Vuex.Store({
         .then(res => {
           context.commit('setUsuario', usuario);
           context.commit('setToken', res.headers.authorization);
+          context.commit('setNivel', res.headers.auths);
           router.push('/exames');
         })
-        .catch(error => {
-          console.log(error)
-        });
+        .catch(() => {});
     }
   },
   modules: {}

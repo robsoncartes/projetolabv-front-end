@@ -19,6 +19,17 @@
         </div>
 
         <router-view></router-view>
+
+        <div class="d-flex justify-content-between mt-3">
+          <ul class="pagination">
+            <router-link
+              :to="`/usuarios/${pag}`"
+              v-for="pag in totalPages"
+              :key="pag"
+              tag="li"
+            >{{pag}}</router-link>
+          </ul>
+        </div>
       </b-col>
     </b-row>
   </b-container>
@@ -40,11 +51,9 @@ export default {
 
   methods: {
     buscarDados() {
-      Contas.paginacao(1, this.itensPorPagina)
-        .then(r => {
-          this.totalPages = r.data.totalPages;
-        })
-        .catch(err => console.log(err));
+      Contas.paginacao(1, this.itensPorPagina).then(r => {
+        this.totalPages = r.data.totalPages;
+      });
     }
   },
 

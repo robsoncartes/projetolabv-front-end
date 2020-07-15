@@ -4,7 +4,11 @@
     <b-row>
       <b-col md="4"></b-col>
       <b-col md="3" class="img-left animated fadeInLeft delay-05s">
-        <img src="@/assets/img/exam.svg" />
+        <div v-if="nivel == 'ADMIN'">
+          <img src="@/assets/img/img_admin.svg" />
+          <p class="text-center my-4 text-white text-upper">Você está logado como Administrador</p>
+        </div>
+        <img src="@/assets/img/exam.svg" v-if="nivel == 'USER'" />
       </b-col>
       <b-col class="text-white py-4 my-4">
         <div
@@ -35,6 +39,7 @@
 
 <script>
 import Exams from "@/services/exams";
+import { mapState } from "vuex";
 import NavMenu from "@/components/NavMenu";
 
 export default {
@@ -65,6 +70,10 @@ export default {
     Exams.listar().then(resposta => {
       this.exams = resposta.data;
     });
+  },
+
+  computed: {
+    ...mapState(["nivel"])
   }
 };
 </script>

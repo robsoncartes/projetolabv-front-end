@@ -106,10 +106,6 @@ export default {
       evt.preventDefault();
       this.form.email = "";
       this.form.password = "";
-    },
-
-    teste() {
-      console.log(store.state.token);
     }
   }
 };
