@@ -11,6 +11,13 @@ export default new Vuex.Store({
     usuario: null,
     nivel: null,
     itensPorPagina: 5,
+    examesResolvidos: [{
+      nome: "Exame 01",
+      questoes: 8,
+      acertos: 8,
+      nota: '100%',
+      usuario: 'rodolfo@santos.com'
+    }]
   },
   mutations: {
     setUsuario(state, usuario) {
@@ -32,8 +39,16 @@ export default new Vuex.Store({
     logout(state) {
       state.token = null;
       state.usuario = null;
-    }
+    },
+    adicionarResultado(state, teste) {
+      state.examesResolvidos.push(teste)
+    },
   },
+
+  getters: {
+    examesConcluidos: state => state.examesResolvidos.filter(exame => exame.usuario === state.usuario)
+  },
+
   actions: {
     login(context, {
       usuario,

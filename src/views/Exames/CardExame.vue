@@ -43,6 +43,8 @@
 
 <script>
 import Exams from "@/services/exams";
+import { mapMutations } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   props: ["id"],
@@ -54,11 +56,20 @@ export default {
       respostasTeste: [],
       respostasCertas: [],
       acertos: 0,
-      media: 0
+      media: 0,
+      resultado: {
+        nome: "",
+        questoes: 0,
+        acertos: 0,
+        nota: "",
+        usuario: ""
+      }
     };
   },
 
   methods: {
+    ...mapMutations(["adicionarResultado"]),
+
     async buscaTeste() {
       const app = this;
 
@@ -75,22 +86,32 @@ export default {
 
     gerarResultado() {
       const app = this;
-      app.acertos = 0;
+      app.resultado.nome = app.exame.examTitle;
+      app.resultado.questoes = app.respostasCertas.length;
+
+      app.resultado.acertos = 0;
       app.respostasTeste.forEach((r, index) => {
         if (r == app.respostasCertas[index]) {
-          app.acertos++;
+          app.resultado.acertos++;
         }
       });
-      app.media = app.acertos / app.respostasCertas.length;
-      alert(`Você acertou: ${app.acertos}, Média: ${app.media * 100}%`);
+      app.resultado.nota = `${(app.resultado.acertos / app.resultado.questoes) *
+        100}%`;
+      alert(
+        `Você acertou: ${app.resultado.acertos}, Média: ${app.resultado.nota}`
+      );
+      app.adicionarResultado(app.resultado);
     }
   },
 
   created() {
+    this.resultado.usuario = this.usuario;
     this.buscaTeste();
   },
 
-  watch: {}
+  computed: {
+    ...mapState(["usuario"])
+  }
 };
 </script>
 

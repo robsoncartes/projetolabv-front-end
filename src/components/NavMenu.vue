@@ -16,6 +16,7 @@
           <template v-if="nivel == 'ADMIN'">
             <b-button size="md w-100 mb-2" variant="primary" to="/usuarios/1">Usuários</b-button>
           </template>
+          <b-button size="md w-100 mb-2" variant="primary" to="/resolvidos">Exames Resolvidos</b-button>
           <b-button size="md w-100 mb-2" variant="danger" @click="sair">Sair</b-button>
         </p>
       </div>

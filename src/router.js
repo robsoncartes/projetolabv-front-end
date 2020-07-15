@@ -13,6 +13,7 @@ import addQuestion from "./views/Questions/addQuestion.vue"
 import addCardQuestion from "./views/Questions/addCardQuestion.vue"
 
 import Usuarios from "./views/Usuarios/Usuarios.vue"
+import Resolvidos from "./views/Resolvidos/Resolvidos.vue"
 import UsuariosPage from "./views/Usuarios/UsuariosPage.vue"
 
 
@@ -87,6 +88,12 @@ export default new Router({
         component: UsuariosPage,
         props: true
       }]
+    },
+
+    {
+      name: "resolvidos",
+      path: "/resolvidos",
+      component: Resolvidos,
     },
 
   ]

@@ -28,7 +28,11 @@
           </p>
           <b-button @click="abrirExame(exam.id)">Responder</b-button>
         </div>
-        <div class="text-right add-new-exam animated fadeInUp delay-1s" @click="adicionarExame">
+        <div
+          class="text-right add-new-exam animated fadeInUp delay-1s"
+          v-if="nivel == 'ADMIN'"
+          @click="adicionarExame"
+        >
           Adicionar novo
           <b-icon-plus-circle></b-icon-plus-circle>
         </div>
