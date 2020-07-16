@@ -16,7 +16,13 @@
           :key="exam.id"
           class="exam my-3 p-3 animated fadeInDown delay-05s"
         >
-          <h2>{{exam.title}}</h2>
+          <div class="d-flex justify-content-between align-itens-center w-100">
+            <h2>{{exam.examTitle}}</h2>
+            <router-link
+              v-if="nivel == 'ADMIN'"
+              :to="`/add_question/${exam.examTitle}`"
+            >Adicionar questões</router-link>
+          </div>
           <p text-muted>{{exam.description}}</p>
           <p>
             <strong>Autor:</strong>

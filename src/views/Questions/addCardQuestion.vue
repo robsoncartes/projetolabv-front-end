@@ -37,6 +37,20 @@
 
       <b-button @click="adicionarQuestao">Adicionar Questão</b-button>
     </b-form>
+
+    <b-modal id="questao-adicionada" size="sm">
+      <template v-slot:modal-header="{}">
+        <h5 class="text-success">Questão Adicionada</h5>
+      </template>
+      <template>
+        <p class="text-muted">Deseja adicionar outra questão?</p>
+      </template>
+
+      <template v-slot:modal-footer>
+        <b-button size="sm" variant="danger" to="/exames">Não</b-button>
+        <b-button size="sm" variant="success" @click="$bvModal.hide('questao-adicionada')">Sim</b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -68,7 +82,7 @@ export default {
     async adicionarQuestao() {
       await Questions.adicionar(this.form)
         .then(() => {
-          alert("Alert Questão adicionada com sucesso!");
+          this.$bvModal.show("questao-adicionada");
         })
         .catch(() => {
           alert("ERRO!");

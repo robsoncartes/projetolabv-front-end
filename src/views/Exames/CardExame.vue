@@ -38,6 +38,19 @@
     <div v-else class="animated fadeIn">
       <b-icon icon="circle-fill" animation="throb" font-scale="4"></b-icon>
     </div>
+
+    <b-modal id="modal-respondido" size="sm">
+      <template v-slot:modal-header="{}">
+        <h5 class="text-success">Suas respostas foram computadas.</h5>
+      </template>
+      <template>
+        <p class="text-muted">Você acertou: {{ resultado.acertos }}, Média: {{ resultado.nota }}</p>
+      </template>
+
+      <template v-slot:modal-footer>
+        <b-button size="sm" variant="success" to="/resolvidos">OK</b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -97,15 +110,14 @@ export default {
       });
       app.resultado.nota = `${(app.resultado.acertos / app.resultado.questoes) *
         100}%`;
-      alert(
-        `Você acertou: ${app.resultado.acertos}, Média: ${app.resultado.nota}`
-      );
+      this.$bvModal.show("modal-respondido");
       app.adicionarResultado(app.resultado);
     }
   },
 
   created() {
     this.resultado.usuario = this.usuario;
+    console.log(this.respostasCertas);
     this.buscaTeste();
   },
 

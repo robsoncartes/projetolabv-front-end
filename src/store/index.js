@@ -11,12 +11,18 @@ export default new Vuex.Store({
     usuario: null,
     nivel: null,
     itensPorPagina: 5,
-    examesResolvidos: [{
-      nome: "Exame 01",
-      questoes: 8,
-      acertos: 8,
-      nota: '100%',
-      usuario: 'rodolfo@santos.com'
+    examesResolvidos: [],
+    respostas: [{
+      questao: 1,
+      alternativas: [{
+          "id": 1,
+          "answer": "ADD"
+        },
+        {
+          "id": 2,
+          "answer": "CREATE"
+        }
+      ]
     }]
   },
   mutations: {
