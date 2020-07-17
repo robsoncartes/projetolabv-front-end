@@ -11,19 +11,7 @@ export default new Vuex.Store({
     usuario: null,
     nivel: null,
     itensPorPagina: 5,
-    examesResolvidos: [],
-    respostas: [{
-      questao: 1,
-      alternativas: [{
-          "id": 1,
-          "answer": "ADD"
-        },
-        {
-          "id": 2,
-          "answer": "CREATE"
-        }
-      ]
-    }]
+    examesResolvidos: []
   },
   mutations: {
     setUsuario(state, usuario) {
@@ -70,7 +58,9 @@ export default new Vuex.Store({
           context.commit('setNivel', res.headers.auths);
           router.push('/exames');
         })
-        .catch(() => {});
+        .catch(erro => {
+          alert(erro.response.data)
+        });
     }
   },
   modules: {}

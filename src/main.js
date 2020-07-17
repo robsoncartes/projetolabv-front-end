@@ -29,7 +29,7 @@ http.interceptors.response.use(res => {
     router.push('/login')
   } else if (error.response.status === 401) {
     store.commit('logout')
-    router.push('/login')
+    router.push('/login').catch(() => {})
   }
   throw error
 })

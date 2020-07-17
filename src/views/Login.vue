@@ -79,7 +79,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import store from "@/store";
 
 export default {
   data() {
@@ -97,9 +96,6 @@ export default {
     ...mapActions(["login"]),
     async auth() {
       await this.login({ usuario: this.form.email, senha: this.form.password });
-      setTimeout(() => {
-        if (store.state.token === null) this.$bvModal.show("modal-erro-login");
-      }, 1500);
     },
 
     onReset(evt) {
