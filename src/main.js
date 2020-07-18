@@ -22,9 +22,8 @@ http.interceptors.request.use(config => {
   }
   return config
 })
-http.interceptors.response.use(res => {
-  return res
-}, error => {
+
+http.interceptors.response.use(res => res, error => {
   if (error.response.status === 403) {
     router.push('/login')
   } else if (error.response.status === 401) {

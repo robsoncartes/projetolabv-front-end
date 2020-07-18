@@ -108,8 +108,9 @@ export default {
           app.resultado.acertos++;
         }
       });
-      app.resultado.nota = `${(app.resultado.acertos / app.resultado.questoes) *
-        100}%`;
+      app.resultado.nota = `${Math.trunc(
+        (app.resultado.acertos / app.resultado.questoes) * 100
+      )}%`;
       this.$bvModal.show("modal-respondido");
       app.adicionarResultado(app.resultado);
     }
